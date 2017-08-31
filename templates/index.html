@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>REST API Client</title>
+    <script type="text/javascript">
+        function httpGetAsync(url, callback) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    callback(xmlHttp.responseText);
+                }
+            }
+            xmlHttp.open('GET', url, true);  // true for asynchronous
+            xmlHttp.send(null);
+        }
+    </script>
+</head>
+<body>
+    <div id="myElement">
+        Hello!
+    </div>
+</body>
+</html>
