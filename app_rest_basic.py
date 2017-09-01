@@ -14,9 +14,11 @@ stores = [
     }
 ]
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
+
 
 # POST /store
 @app.route('/store', methods=['POST'])
@@ -68,4 +70,4 @@ def get_items_in_stores(name):
     return jsonify({'message': 'store not found'})
 
 
-app.run(port=9527)
+app.run(port=9527, debug=True)
