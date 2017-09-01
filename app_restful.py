@@ -1,8 +1,13 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
+from flask_jwt import JWT
+from security import authenticate, identity
+
 
 app = Flask(__name__)
 api = Api(app)
+
+jwt = JWT(app, authenticate, identity)
 
 items = []
 
