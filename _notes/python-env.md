@@ -2,11 +2,13 @@
 
     pip3.5 install virtualenv
 
-    virtualenv -p python3
+    virtualenv venv3 -p python3
     
-    source venv/bin/active
+    source venv3/bin/active
     
-    pop freeze
+    pip freeze
     
 ## Dependency
+    Flask
     Flask-RESTful
+    Flask-JWT

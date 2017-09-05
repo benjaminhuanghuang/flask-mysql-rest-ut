@@ -38,14 +38,15 @@ class Item(Resource):
         items = list(filter(lambda x: x['name'] != name, items))
 
     def put(self, name):
-        data = request.get_json();
-        item = next(filter(lambda x:x['name']==name, items), None)
+        data = request.get_json()
+        item = next(filter(lambda x: x['name'] == name, items), None)
         if item is None:
-            item ={'name':name, 'price':data['price']}
+            item = {'name': name, 'price': data['price']}
             items.append(item)
         else:
             item.update(data)
         return item
+
 
 class ItemList(Resource):
     def get(self):
