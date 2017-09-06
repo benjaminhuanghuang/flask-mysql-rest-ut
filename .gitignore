@@ -1,3 +1,6 @@
 .DS_Store
 .idea
 venv3
+data.db
+__pycache__
+

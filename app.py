@@ -8,17 +8,15 @@ from resources.item import Item
 from resources.items import ItemList
 from resources.store import Store, StoreList
 
-from db import db
 
 def create_app(**config_overrides):
     app = Flask(__name__)
     app.secret_key = "SeCreT"
 
-    app.config.from_pyfile('settings.py')
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+    # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config.from_pyfile('config.py')
     app.config.update(config_overrides)
-
-
-    db.init_app(app)
 
     api = Api(app)
     jwt = JWT(app, authenticate, identity)
@@ -29,13 +27,16 @@ def create_app(**config_overrides):
     api.add_resource(ItemList, '/items')
     api.add_resource(UserRegister, '/register')
 
+    #
+    # @app.before_first_request()
+    # def create_tables():
+    #     db.create_all()
 
-    @app.before_first_request()
-    def create_tables():
-        db.create_all()
     return app
 
 
 if __name__ == "__main__":
     app = create_app()
+    from db import db
+    db.init_app(app)
     app.run(debug=True)
